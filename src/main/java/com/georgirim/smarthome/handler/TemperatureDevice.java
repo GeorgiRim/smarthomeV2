@@ -1,9 +1,11 @@
 package com.georgirim.smarthome.handler;
 
-public class TemperatureDevice extends Device<Float>{
+import com.georgirim.smarthome.mysql.Device;
 
-public TemperatureDevice(String ip, String mac){
-    super(ip,mac);
+public class TemperatureDevice extends Device {
+
+public TemperatureDevice(int type, String ip){
+    super(type, ip);
 }
 
 }

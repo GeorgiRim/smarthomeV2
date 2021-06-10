@@ -1,4 +1,4 @@
-package com.georgirim.smarthome.handler;
+/*package com.georgirim.smarthome.handler;
 
 public abstract class Device<D> {
     private String ip;
@@ -18,3 +18,6 @@ public abstract class Device<D> {
 
     }
 }
+
+
+ */

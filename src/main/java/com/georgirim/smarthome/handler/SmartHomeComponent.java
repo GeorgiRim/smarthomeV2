@@ -1,3 +1,4 @@
+/*
 package com.georgirim.smarthome.handler;
 
 public class SmartHomeComponent {
@@ -5,3 +6,5 @@ public class SmartHomeComponent {
         Device device = new TemperatureDevice("test","test");
     }
 }
+
+ */
