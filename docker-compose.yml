@@ -1,41 +1,15 @@
 version: '3'
 
 services:
-
-  # Use root/example as user/password credentials
-  db:
-    image: mariadb
-    container_name: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    ports:
-      - 3306:3306
-    volumes:
-    - ./mysql:/var/lib/mysql
-    - ./mysql/conf:/var/run/mysqld
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: bd
-    #tty: true
-    #stdin_open: true
-
-  adminer:
-    image: adminer
-    container_name: adminer
-    restart: always
-    ports:
-      - 8081:8080
-    links:
-     - db
-     
-#  smarthome:
- #   build: ./smarthomeDocker
-  #  container_name: smarthomeDocker
-   # ports:
-    #- 8080:8080
-    #restart: always
+  smarthome:
+  build: ./smarthomeDocker
+  container_name: smarthomeDocker
+  ports:
+  - 8080:8080
+  restart: always
     #links:
      # - db
+
 #  web:
 #    image: nginx
 #    volumes:
@@ -46,5 +20,3 @@ services:
 #    environment:
 #      - NGINX_HOST=foobar.com
 #      - NGINX_PORT=80
-#    links:
-#      - db

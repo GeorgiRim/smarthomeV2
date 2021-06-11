@@ -1,6 +1,6 @@
-package com.georgirim.smarthome.handler;
+package com.georgirim.smarthome.models;
 
-import com.georgirim.smarthome.mysql.Device;
+import com.georgirim.smarthome.models.Device;
 
 public class TemperatureDevice extends Device {
 

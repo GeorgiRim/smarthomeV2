@@ -1,7 +1,7 @@
-package com.georgirim.smarthome.handler;
+package com.georgirim.smarthome.services;
 
-import com.georgirim.smarthome.mysql.Device;
-import com.georgirim.smarthome.mysql.DeviceRepository;
+import com.georgirim.smarthome.models.Device;
+import com.georgirim.smarthome.repositorys.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
