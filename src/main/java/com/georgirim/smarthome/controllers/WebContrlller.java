@@ -20,15 +20,9 @@ public class WebContrlller {
     @Autowired
     DeviceService deviceService;
 
-    //@Autowired
-    //private DeviceRepository deviceRepository;
-
     @GetMapping("/")
     public String mainController(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
         List deviceList =  deviceService.getAllDevices();
-        if (deviceList == null){
-            deviceList = new ArrayList<>();
-        }
         model.addAttribute("today",Calendar.getInstance().getTime());
         model.addAttribute("devices", deviceService.getAllDevices());
         return "main";
