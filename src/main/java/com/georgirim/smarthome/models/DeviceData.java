@@ -1,11 +1,9 @@
 package com.georgirim.smarthome.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public class DeviceData <T> {
+@Entity
+public class DeviceData {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -14,5 +12,21 @@ public class DeviceData <T> {
 
     private int deviceId;
 
-    private T data;
+    private int data;
+
+    public int getDeviceId() {
+        return deviceId;
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public void setData(int data) {
+        this.data = data;
+    }
+
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
+    }
 }

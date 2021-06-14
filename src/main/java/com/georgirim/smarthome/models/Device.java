@@ -7,10 +7,16 @@ package com.georgirim.smarthome.models;
 
 import javax.persistence.*;
 
+import com.georgirim.smarthome.services.DataService;
+import com.georgirim.smarthome.services.DeviceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Entity
 public class Device {
+    //@Autowired
+    //DataService dataService;
+
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -21,24 +27,20 @@ public class Device {
 
     private String ip;
 
-    //@Enumerated(value = EnumType.STRING)
-    private int type;
+    @Enumerated(value = EnumType.STRING)
+    private Type type = Type.TEST;
 
-    private DeviceData deviceData;
+    //private DeviceData deviceData;
 
     public Device(){}
 
-    public Device(int type, String ip){
-
-        if(ico == null){
-            switch (type){
-                case 1:ico = "https://e7.pngegg.com/pngimages/874/595/png-clipart-smoke-detector-fire-alarm-control-panel-conflagration-fire-protection-smoke-smoke-smoke-detector-thumbnail.png"; break;
-                case 2:ico = "https://www.pngfind.com/pngs/m/136-1367874_web-camera-png-free-download-webcam-png-transparent.png"; break;
-                case 3:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
-                case 4:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
+    public Device(Type deviceType, String ip){
+            switch (deviceType){
+                case FIRE:ico = "https://e7.pngegg.com/pngimages/874/595/png-clipart-smoke-detector-fire-alarm-control-panel-conflagration-fire-protection-smoke-smoke-smoke-detector-thumbnail.png"; break;
+                case TEPERATURE:ico = "https://www.pngfind.com/pngs/m/136-1367874_web-camera-png-free-download-webcam-png-transparent.png"; break;
+                case CAM:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
+                case SUNSET:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
                 default: ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg";
-            }
-            //this.type = type;
             this.ip = ip;
         }
     }
@@ -47,7 +49,8 @@ public class Device {
         FIRE,
         TEPERATURE,
         CAM,
-        SUNSET
+        SUNSET,
+        TEST
     }
 
     public String getIco() {
@@ -70,11 +73,15 @@ public class Device {
         return ip;
     }
 
-    public void setType(int type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
-    public int getType() {
+    public Type getType() {
         return type;
     }
+
+   // public void saveData(DeviceData data){
+   //     dataService.saveOrUpdate(data);
+   // }
 }
