@@ -43,6 +43,7 @@ public class Device {
                 default: ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg";
             this.ip = ip;
         }
+        this.type = deviceType;
     }
 
     public enum Type{

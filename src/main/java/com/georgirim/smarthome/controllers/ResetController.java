@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ResetController {
     Logger logger = LoggerFactory.getLogger(ResetController.class);
-    //private static List deviceList = new ArrayList<Device>();
     @Autowired
     DeviceService deviceService;
 
