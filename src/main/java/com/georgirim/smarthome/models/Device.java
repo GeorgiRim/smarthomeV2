@@ -1,10 +1,5 @@
 package com.georgirim.smarthome.models;
 
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-
 import javax.persistence.*;
 
 import com.georgirim.smarthome.services.DataService;
@@ -14,10 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Entity
 public class Device {
-    //@Autowired
-    //DataService dataService;
-
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "ID", updatable = false, nullable = false)

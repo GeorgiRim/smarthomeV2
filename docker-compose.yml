@@ -2,11 +2,11 @@ version: '3'
 
 services:
   smarthome:
-  build: ./smarthomeDocker
-  container_name: smarthomeDocker
-  ports:
-  - 8080:8080
-  restart: always
+    build: ./
+    container_name: smarthomeDocker
+    ports:
+    - 8080:8080
+    restart: always
     #links:
      # - db
 

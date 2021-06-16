@@ -1,7 +1,9 @@
 package com.georgirim.smarthome.controllers;
 
 import com.georgirim.smarthome.services.DeviceService;
+import com.georgirim.smarthome.services.DataService;
 import com.georgirim.smarthome.models.Device;
+import com.georgirim.smarthome.models.DeviceData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class ResetController {
     @Autowired
     DeviceService deviceService;
 
+    @Autowired
+    DataService dataService;
+
     @GetMapping("/add")
     public String addNewDevice (@RequestParam String type, @RequestHeader HttpHeaders headers){
         deviceService.saveOrUpdate(new Device(Device.Type.valueOf(type),headers.getHost().getHostName()));
@@ -26,8 +31,9 @@ public class ResetController {
     }
 
     @GetMapping("/api")
-    public String api(@RequestParam(value = "id", defaultValue = "0") int id, @RequestParam(value = "data", defaultValue = "0") int value, Model model) {
-        deviceService.getMovieById(id);
+    public String api(@RequestParam(value = "id", defaultValue = "0") int id, @RequestParam(value = "data", defaultValue = "0") int data, Model model) {
+        //deviceService.getMovieById(id);
+        dataService.saveOrUpdate(new DeviceData(data, id));
         //model.addAttribute("today",Calendar.getInstance().getTime());
         return "ok";
     }

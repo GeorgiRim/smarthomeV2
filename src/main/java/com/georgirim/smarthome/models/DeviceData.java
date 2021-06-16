@@ -14,6 +14,11 @@ public class DeviceData {
 
     private int data;
 
+    public DeviceData(int data, int deviceId){
+        this.data = data;
+        this.deviceId = deviceId;
+    }
+
     public int getDeviceId() {
         return deviceId;
     }
