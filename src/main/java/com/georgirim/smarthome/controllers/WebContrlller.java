@@ -20,10 +20,11 @@ public class WebContrlller {
     DeviceService deviceService;
 
     @GetMapping("/")
-    public String mainController(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
+    public String mainController(Model model) {
         List deviceList =  deviceService.getAllDevices();
         model.addAttribute("today",Calendar.getInstance().getTime());
         model.addAttribute("devices", deviceService.getAllDevices());
+        logger.debug("Main page response");
         return "main";
     }
 
