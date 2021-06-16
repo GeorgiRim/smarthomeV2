@@ -1,0 +1,6 @@
+com.georgirim.smarthome
+com.georgirim.smarthome.controllers
+com.georgirim.smarthome.gpio
+com.georgirim.smarthome.models
+com.georgirim.smarthome.repositorys
+com.georgirim.smarthome.services
