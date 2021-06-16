@@ -1,3 +1,3 @@
 FROM openjdk:12-jdk-alpine
-COPY springbootify.jar springbootify.jar
-CMD ["java","-jar","springbootify.jar"]
+COPY smarthome-0.0.1-SNAPSHOT.jar smarthome-0.0.1-SNAPSHOT.jar
+CMD ["java","-jar","smarthome-0.0.1-SNAPSHOT.jar"]

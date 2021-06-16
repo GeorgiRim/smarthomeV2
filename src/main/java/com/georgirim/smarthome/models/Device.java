@@ -36,10 +36,12 @@ public class Device {
 
     public Device(Type deviceType, String ip){
             switch (deviceType){
+                case TEMP:ico = "https://static.tildacdn.com/tild3863-6237-4836-b635-323930613138/noun_1065028.png"; break;
+                case HUMI:ico = "https://image.flaticon.com/icons/png/512/219/219816.png"; break;
+                case ILLUM:ico = "https://cdn.onlinewebfonts.com/svg/img_144672.png"; break;
                 case FIRE:ico = "https://e7.pngegg.com/pngimages/874/595/png-clipart-smoke-detector-fire-alarm-control-panel-conflagration-fire-protection-smoke-smoke-smoke-detector-thumbnail.png"; break;
                 case TEPERATURE:ico = "https://www.pngfind.com/pngs/m/136-1367874_web-camera-png-free-download-webcam-png-transparent.png"; break;
                 case CAM:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
-                case SUNSET:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
                 default: ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg";
         }
         this.ip = ip;
@@ -47,6 +49,9 @@ public class Device {
     }
 
     public enum Type{
+        TEMP,
+        HUMI,
+        ILLUM,
         FIRE,
         TEPERATURE,
         CAM,

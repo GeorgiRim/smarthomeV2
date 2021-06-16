@@ -18,7 +18,7 @@
     /* border: 1px solid #333;  Параметры рамки */
     /*background-color: #EEDDFF; */
   	border: 2px solid gray;
-  	border-radius: 2px;
+  	border-radius: 10px;
    }
    .smarthome-text{
    font-size: 30px
@@ -46,34 +46,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-auto bg-transparent">
-                    <div class="smarthome">
+                    <div class="smarthome" style="border: 0px">
+                        <iframe src="https://www.intek-m.ru/player/playerjs.html?file=/live/letnaya/s.m3u8" frameborder="0" allowfullscreen></iframe>
                         <iframe src="https://www.intek-m.ru/player/playerjs.html?file=/live/letnaya/s.m3u8" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-md-auto bg-transparent">
-                    <div class="smarthome">
+                    <div class="smarthome" style="border: 0px">
                         <center>
-                        <div id="pp_informer2"></div><script src="https://pogoda.perm.ru/informer.js?code=perm&s=rus&r=permskij_kraj&bgcolor=7394e0&scolor=97a6f2&tcolor=e2f8ff&type=2&font=Arial&width=300px&border=0px"></script>
+                            <div id="pp_informer1"></div><script src="https://meteogu.ru/informers.js?code=perm&s=rus&r=permskij_kraj&bgcolor=EE5E00&scolor=FF9881&tcolor=FFFFFF&type=1&font=Arial&width=350px&border=0px&radius=10px&shadow=1&gradient=0&graph=1"></script>
                         </center>
                     </div>
                 </div>
                 <div class="col-md-auto" th:each="device : ${devices}">
                     <center>
                     <div class="smarthome bg-primary bg-gradient smarthome-text">
-                        <img th:src="@{${device.ico}}" width="255" height="255"/><br>
-                            Тип: <text th:text="${device.type}"></text><br>
+                        <img th:src="@{${device.ico}}" width="200" height="200"/><br>
+                            Тип:<span th:switch="${device.type.name()}"><br>
+                                <text th:case="'TEMP'">Температура</text>
+                                <text th:case="'HUMI'">Влажность</text>
+                                <text th:case="*"><text th:text="device.type.name()"></text></text>
+                                </span><br>
                             IP: <text th:text="${device.ip}"></text><br>
                             Значение: <text th:text="${device.lastdeviceData}"></text>
-                            <span th:switch="${device.type}">
-                                <i th:case="'FIRE'">C</i>
-                                <i th:case="Orange"></i>
+                            <span th:switch="${device.type.name()}">
+                                <i th:case="'TEMP'">°</i>
+                                <i th:case="'HUMI'">%</i>
                                 <i th:case="*">%</i>
                             </span>
                     </div>
                     </center>
                 </div>
                 <div class="col-md-auto">
-                    <div class="smarthome">
+                    <div class="smarthome bg-primary bg-gradient">
                         <center>
                         <h1>Добавить устройство</h1>
                         <div class="dropdown">
@@ -106,6 +111,33 @@
                 </div>
             </div>
         </div>
+        <script>
+        var timeReload = 1;//время в минутах
+        timeReload = timeReload*60;
+        var timenow=0;
+
+        function isReload()
+        {
+        timenow++;
+        if (timenow>=timeReload) {
+        timenow=0;
+
+        document.location.reload();
+        }
+        }
+
+        var t=setInterval("isReload()",1000);
+
+        function MyEvent(event) {
+        event = event || window.event;
+        timenow=0;
+
+        }
+
+        document.onclick = MyEvent;//клик
+        document.onkeypress = MyEvent;//нажатие клавиш клавиатуры
+
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     </body>
