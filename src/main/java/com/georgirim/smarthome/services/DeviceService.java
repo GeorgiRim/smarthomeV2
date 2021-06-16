@@ -20,7 +20,7 @@ public class DeviceService {
         return devices;
     }
 
-    public Device getMovieById(int id) {
+    public Device getDeviceById(int id) {
         return deviceRepository.findById(id).get();
     }
 
@@ -30,5 +30,9 @@ public class DeviceService {
 
     public void delete(int id) {
         deviceRepository.deleteById(id);
+    }
+
+    public long count(){
+        return deviceRepository.count();
     }
 }

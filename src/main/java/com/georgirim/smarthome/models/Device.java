@@ -1,5 +1,10 @@
 package com.georgirim.smarthome.models;
 
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+
 import javax.persistence.*;
 
 import com.georgirim.smarthome.services.DataService;
@@ -9,6 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Entity
 public class Device {
+    //@Autowired
+    //DataService dataService;
+
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "ID", updatable = false, nullable = false)
@@ -21,7 +30,7 @@ public class Device {
     @Enumerated(value = EnumType.STRING)
     private Type type = Type.TEST;
 
-    //private DeviceData deviceData;
+    private int lastdeviceData = 0;
 
     public Device(){}
 
@@ -32,8 +41,8 @@ public class Device {
                 case CAM:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
                 case SUNSET:ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg"; break;
                 default: ico = "https://i.pinimg.com/originals/8d/cd/59/8dcd596c75a0f2629e7493ea575c8b2a.jpg";
-            this.ip = ip;
         }
+        this.ip = ip;
         this.type = deviceType;
     }
 
@@ -73,7 +82,11 @@ public class Device {
         return type;
     }
 
-   // public void saveData(DeviceData data){
-   //     dataService.saveOrUpdate(data);
-   // }
+    public int getLastdeviceData() {
+        return lastdeviceData;
+    }
+
+    public void setLastdeviceData(int lastdeviceData) {
+        this.lastdeviceData = lastdeviceData;
+    }
 }

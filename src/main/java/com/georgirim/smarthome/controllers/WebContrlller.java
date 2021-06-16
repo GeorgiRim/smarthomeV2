@@ -24,7 +24,7 @@ public class WebContrlller {
         List deviceList =  deviceService.getAllDevices();
         model.addAttribute("today",Calendar.getInstance().getTime());
         model.addAttribute("devices", deviceService.getAllDevices());
-        logger.debug("Main page response");
+        logger.info("Main page response");
         return "main";
     }
 

@@ -1,5 +1,8 @@
 package com.georgirim.smarthome.models;
 
+import javax.persistence.Entity;
+
+@Entity
 public class RelayDevice extends Device{
 
     private boolean state = false;

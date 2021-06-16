@@ -9,22 +9,22 @@
 </head>
 <style>
    .smarthome {
-    height: 350px; /* Высота блока */
+    height: 400px; /* Высота блока */
 	margin-bottom: 10px;
     width: 350px; /* Ширина блока */
     /* overflow: scroll; /* Добавляем полосы прокрутки */
-    background: #fc0; /* Цвет фона */
+    /* background: ; /* Цвет фона */
     /* padding: 7px; Поля вокруг текста */
     /* border: 1px solid #333;  Параметры рамки */
     /*background-color: #EEDDFF; */
-  	border: 6px solid #7922CC;
+  	border: 2px solid gray;
   	border-radius: 2px;
+   }
+   .smarthome-text{
+   font-size: 30px
    }
   </style>
     <body background="gray">
-        <a href="#" class="link-secondary">Secondary link</a>
-        <button type="button" class="btn btn-success" onclick="#">Success</button>
-        Today is: <span th:text="${today}">13 February 2011</span>
         <div class="container">
             <div class="row align-items-start">
                 <div class="col">
@@ -37,34 +37,71 @@
                     <h1 >База данных</h1>
                     </a>
                 </div>
+                <div class="col">
+                    <h3>Сегодня: <span th:text="${today}">13 February 2011</span></h3>
+                </div>
             </div>
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col-md-auto">
+                <div class="col-md-auto bg-transparent">
                     <div class="smarthome">
                         <iframe src="https://www.intek-m.ru/player/playerjs.html?file=/live/letnaya/s.m3u8" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
-                <div class="col-md-auto">
+                <div class="col-md-auto bg-transparent">
                     <div class="smarthome">
+                        <center>
                         <div id="pp_informer2"></div><script src="https://pogoda.perm.ru/informer.js?code=perm&s=rus&r=permskij_kraj&bgcolor=7394e0&scolor=97a6f2&tcolor=e2f8ff&type=2&font=Arial&width=300px&border=0px"></script>
+                        </center>
                     </div>
                 </div>
                 <div class="col-md-auto" th:each="device : ${devices}">
-                    <div class="smarthome">
-                        <img th:src="@{${device.ico}}" width="255" height="255"/>
-                        <h1 th:text="${device.type}"></h1>
-                        <h1 th:text="${device.ip}"></h1>
+                    <center>
+                    <div class="smarthome bg-primary bg-gradient smarthome-text">
+                        <img th:src="@{${device.ico}}" width="255" height="255"/><br>
+                            Тип: <text th:text="${device.type}"></text><br>
+                            IP: <text th:text="${device.ip}"></text><br>
+                            Значение: <text th:text="${device.lastdeviceData}"></text>
+                            <span th:switch="${device.type}">
+                                <i th:case="'FIRE'">C</i>
+                                <i th:case="Orange"></i>
+                                <i th:case="*">%</i>
+                            </span>
                     </div>
+                    </center>
                 </div>
                 <div class="col-md-auto">
                     <div class="smarthome">
+                        <center>
                         <h1>Добавить устройство</h1>
-                        <a href="/add">
-                            <img src="https://pngimg.com/uploads/plus/plus_PNG30.png" width="255" height="255"/>
-                        </a>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Добавить
+                            </button>
+                            <div class="dropdown-menu">
+                                <form class="px-4 py-3">
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                                        <label class="form-check-label" for="dropdownCheck">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Добваить</button>
+                                </form>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </div>
+                        </center>
                     </div>
                 </div>
             </div>
