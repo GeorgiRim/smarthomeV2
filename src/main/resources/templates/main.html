@@ -77,6 +77,21 @@
                     </div>
                     </center>
                 </div>
+                <div class="col-md-auto" th:each="relay : ${relayDevices}">
+                    <center>
+                        <div class="smarthome bg-primary bg-gradient smarthome-text">
+                            <img th:src="@{${relay.ico}}" width="200" height="200"/><br>
+                            Тип: Реле<br>
+                            IP: <text th:text="${relay.ip}"></text><br>
+                            Состояние: <text th:text="${relay.state}"></text>
+                            <span th:switch="${relay.state}">
+                                <i th:case="true">Включено</i>
+                                <i th:case="false">Выключенно</i>
+                            </span>
+                            <button type="button" class="btn btn-success">Переключить</button>
+                        </div>
+                    </center>
+                </div>
                 <div class="col-md-auto">
                     <div class="smarthome bg-primary bg-gradient">
                         <center>

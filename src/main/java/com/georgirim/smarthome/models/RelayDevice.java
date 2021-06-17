@@ -5,6 +5,12 @@ import javax.persistence.Entity;
 @Entity
 public class RelayDevice extends Device{
 
+    public RelayDevice(String ip){
+        super(Type.RELAY,ip);
+    }
+
+    public RelayDevice(){}
+
     private boolean state = false;
 
     public void setState(boolean state) {

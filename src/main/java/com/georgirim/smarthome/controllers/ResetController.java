@@ -1,9 +1,11 @@
 package com.georgirim.smarthome.controllers;
 
+import com.georgirim.smarthome.models.RelayDevice;
 import com.georgirim.smarthome.services.DeviceService;
 import com.georgirim.smarthome.services.DataService;
 import com.georgirim.smarthome.models.Device;
 import com.georgirim.smarthome.models.DeviceData;
+import com.georgirim.smarthome.services.RelayDeviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,19 @@ public class ResetController {
     @Autowired
     DataService dataService;
 
+    @Autowired
+    RelayDeviceService relayDeviceService;
+
     @GetMapping("/add")
     public long addNewDevice (@RequestParam String type, @RequestHeader HttpHeaders headers, HttpServletRequest request){
-        deviceService.saveOrUpdate(new Device(Device.Type.valueOf(type),request.getRemoteHost()));
-        logger.info("New Device ip=" + request.getRemoteHost() + " type=" + type);
-        return deviceService.count();
+        if(Device.Type.valueOf(type) == Device.Type.RELAY){
+            relayDeviceService.saveOrUpdate(new RelayDevice(request.getRemoteHost()));
+            return relayDeviceService.count();
+        } else {
+            deviceService.saveOrUpdate(new Device(Device.Type.valueOf(type), request.getRemoteHost()));
+            logger.info("New Device ip=" + request.getRemoteHost() + " type=" + type);
+            return deviceService.count();
+        }
     }
 
     @GetMapping("/api")
